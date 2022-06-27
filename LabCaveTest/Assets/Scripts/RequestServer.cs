@@ -24,14 +24,18 @@ namespace ServerTool
             if (uwr.isNetworkError)
             {
                 Debug.Log("Borosa : " + uwr.error);
+#if UNITY_EDITOR
                 PopupWindow.Show( new Rect(new Vector2(Screen.width/2,Screen.height/2),new Vector2(200,50)), new PopupExample(uwr.error));
-              
+#endif
+
             }
             else
             {
                 if (uwr.downloadHandler.text.Contains("Error"))
                 {
-                    PopupWindow.Show(new Rect(new Vector2(Screen.width / 2, Screen.height / 2), new Vector2(200, 250)), new PopupExample(uwr.error, uwr.downloadHandler.text));
+#if UNITY_EDITOR
+                    PopupWindow.Show(new Rect(new Vector2(Screen.width / 2, Screen.height / 2), new Vector2(200, 250)), new PopupExample(uwr.error, uwr.downloadHandler.text));                
+#endif
                 }
                 else 
                 {
@@ -42,6 +46,7 @@ namespace ServerTool
             }
         }
     }
+#if UNITY_EDITOR
     internal class PopupExample : PopupWindowContent
     {
         private string message;
@@ -68,5 +73,6 @@ namespace ServerTool
 
         }
     }
+#endif
 
 }
